@@ -1,4 +1,3 @@
-# IOT PROJECT 2: DJANGO
 
 # SMART ATTENDANCE MONITORING SYSTEM
 
@@ -1305,35 +1304,7 @@ GitHub Repository
 
 ---
 
-# REPOSITORY DOCUMENTATION
 
-The GitHub repository should contain:
-
-```text
-README.md
-```
-
-for a short project overview.
-
-The detailed setup documentation can be stored as:
-
-```text
-SETUP.md
-```
-
-The documentation should explain:
-
-- Project purpose
-- Technologies
-- Installation
-- Django configuration
-- Database
-- Running the application
-- Troubleshooting
-- Git setup
-- GitHub setup
-
----
 
 # FINAL PROJECT WORKFLOW
 
@@ -1380,28 +1351,7 @@ SQLite             Templates
 
 ---
 
-# CONCLUSION
-
-The **Smart Attendance Monitoring System** demonstrates the development of a complete basic web application using Django.
-
-The project covers the complete development workflow starting from creating a Python virtual environment and Django project, followed by application development, database integration, template rendering and dashboard creation.
-
-The project also introduces software-development practices such as dependency management, Git version control, GitHub repository management and technical documentation.
-
-The final application provides a foundation that can later be extended with features such as:
-
-- RFID-based attendance
-- Face-recognition attendance
-- Automated attendance marking
-- Student login
-- Faculty login
-- Attendance reports
-- CSV/PDF export
-- Attendance analytics
-- Email notifications
-- Real-time attendance monitoring
-
----
+#
 
 # AUTHOR
 

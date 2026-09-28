@@ -38,7 +38,8 @@ The project is implemented using **Python, Django, HTML, CSS and SQLite**, and i
 26. [Attendance Statistics](#attendance-statistics)
 27. [View with Database Data](#view-with-database-data)
 28. [Displaying Data in HTML](#displaying-data-in-html)
-29. [Project Testing](#project-testing)
+29. [How to Test and Use the Interface](#how-to-test-and-use-the-interface)
+30. [Project Testing](#project-testing)
 30. [Common Error: TemplateDoesNotExist](#common-error--templatedoesnotexist)
 31. [Common Error: Import Could Not Be Resolved](#common-error--import-could-not-be-resolved)
 32. [Project Requirements](#project-requirements)
@@ -756,6 +757,193 @@ Attendance records can similarly be displayed:
 ```
 
 ---
+
+
+# HOW TO TEST AND USE THE INTERFACE
+
+After completing the Django implementation, the project can be tested directly through the web browser.
+
+## 1. Start the Django Server
+
+Open the terminal in the project directory:
+
+```bash
+cd ~/smart_attendance_project
+```
+
+Activate the virtual environment:
+
+```bash
+source venv/bin/activate
+```
+
+Start Django:
+
+```bash
+python manage.py runserver
+```
+
+You should see:
+
+```text
+Starting development server at http://127.0.0.1:8000/
+```
+
+---
+
+## 2. Open the Main Interface
+
+Open a browser and visit:
+
+```text
+http://127.0.0.1:8000/
+```
+
+This is the main interface of the **Smart Attendance Monitoring System**.
+
+The page should display the single-page attendance dashboard.
+
+---
+
+## 3. What to Check on the Interface
+
+The dashboard should provide the main attendance information in one page.
+
+For example:
+
+```text
++------------------------------------------------------+
+|       SMART ATTENDANCE MONITORING SYSTEM             |
++------------------------------------------------------+
+|                                                      |
+|  TOTAL STUDENTS     PRESENT     ABSENT     ATTENDANCE|
+|       50               42          8          84%    |
+|                                                      |
++------------------------------------------------------+
+|                 ATTENDANCE RECORDS                   |
++------------------------------------------------------+
+| Roll No | Name | Date | Subject | Status             |
+|---------|------|------|---------|--------------------|
+| 101     | A    | ...  | IoT     | Present            |
+| 102     | B    | ...  | IoT     | Present            |
+| 103     | C    | ...  | IoT     | Absent             |
++------------------------------------------------------+
+```
+
+Check that:
+
+- The page loads without an error.
+- The project title is visible.
+- Attendance statistics are displayed.
+- Student/attendance records are visible.
+- Present and absent statuses are shown correctly.
+- The attendance percentage is displayed correctly.
+- The page remains a single-page interface.
+
+---
+
+## 4. Add Data Through Django Admin
+
+Open another browser tab:
+
+```text
+http://127.0.0.1:8000/admin/
+```
+
+Log in using the superuser credentials.
+
+Add sample students and attendance records through the Admin interface.
+
+For example:
+
+```text
+Student:
+Roll Number: 101
+Name: Student One
+Department: ECE
+```
+
+Then create an attendance record:
+
+```text
+Student: Student One
+Date: 28-09-2026
+Subject: IoT
+Status: Present
+```
+
+---
+
+## 5. Return to the Main Interface
+
+Go back to:
+
+```text
+http://127.0.0.1:8000/
+```
+
+Refresh the page.
+
+The newly added information should now appear in the dashboard.
+
+This verifies that:
+
+```text
+Django Admin
+     |
+     v
+SQLite Database
+     |
+     v
+Django Model
+     |
+     v
+Django View
+     |
+     v
+HTML Template
+     |
+     v
+Browser Dashboard
+```
+
+---
+
+## 6. Test Different Attendance Values
+
+Add several attendance records with different statuses.
+
+For example:
+
+```text
+Student One  → Present
+Student Two  → Present
+Student Three → Absent
+Student Four → Present
+```
+
+Refresh the dashboard and verify that the displayed attendance statistics change according to the database records.
+
+---
+
+## 7. Final Interface Test
+
+The project is ready for demonstration when:
+
+```text
+Browser
+   ↓
+http://127.0.0.1:8000/
+   ↓
+Smart Attendance Dashboard
+   ↓
+Student / Attendance Information
+   ↓
+Statistics
+```
+
+works without errors.
+
 
 # PROJECT TESTING
 

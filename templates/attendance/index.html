@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartAttend - Attendance Monitoring System</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+        body {
+            background-color: #f4f7fb;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #eef4ff, #ffffff);
+            padding: 40px 0;
+            border-radius: 15px;
+            margin-top: 25px;
+        }
+
+        .hero h1 {
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .hero p {
+            color: #64748b;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+        }
+
+        .stat-card h2 {
+            font-size: 30px;
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+        .stat-card p {
+            color: #64748b;
+            margin-bottom: 0;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+        }
+
+        .section-title {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            border: none;
+            padding: 10px 20px;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .table th {
+            background-color: #f8fafc;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .badge-present {
+            background-color: #dcfce7;
+            color: #15803d;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        .badge-absent {
+            background-color: #fee2e2;
+            color: #dc2626;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        .percentage {
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        footer {
+            text-align: center;
+            color: #94a3b8;
+            padding: 30px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+
+        <a class="navbar-brand brand" href="/">
+            SmartAttend
+        </a>
+
+        <span class="text-muted">
+            Smart Attendance Monitoring System
+        </span>
+
+    </div>
+</nav>
+
+
+<div class="container">
+
+    <!-- HERO SECTION -->
+
+    <div class="hero px-4">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-8">
+
+                <small class="text-primary fw-bold">
+                    DJANGO PROJECT
+                </small>
+
+                <h1 class="mt-2">
+                    Smart Attendance Monitoring
+                </h1>
+
+                <p>
+                    A centralized web-based platform for managing,
+                    monitoring, and analyzing student attendance records.
+                </p>
+
+            </div>
+
+            <div class="col-md-4 text-center">
+
+                <div class="display-1">
+                    📊
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- DASHBOARD STATISTICS -->
+
+    <div class="row mt-4 g-4">
+
+        <div class="col-md-3">
+            <div class="stat-card">
+
+                <p>TOTAL STUDENTS</p>
+
+                <h2>{{ total_students }}</h2>
+
+                <small class="text-muted">
+                    Registered students
+                </small>
+
+            </div>
+        </div>
+
+
+        <div class="col-md-3">
+            <div class="stat-card">
+
+                <p>PRESENT RECORDS</p>
+
+                <h2 class="text-success">
+                    {{ present_today }}
+                </h2>
+
+                <small class="text-muted">
+                    Total present entries
+                </small>
+
+            </div>
+        </div>
+
+
+        <div class="col-md-3">
+            <div class="stat-card">
+
+                <p>ABSENT RECORDS</p>
+
+                <h2 class="text-danger">
+                    {{ absent_today }}
+                </h2>
+
+                <small class="text-muted">
+                    Total absent entries
+                </small>
+
+            </div>
+        </div>
+
+
+        <div class="col-md-3">
+            <div class="stat-card">
+
+                <p>ATTENDANCE RATE</p>
+
+                <h2 class="text-primary">
+                    {{ overall_percentage }}%
+                </h2>
+
+                <small class="text-muted">
+                    Overall attendance
+                </small>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- MESSAGES -->
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="alert alert-success mt-4">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+
+    <!-- ADD STUDENT SECTION -->
+
+    <div class="section-card mt-4">
+
+        <h4 class="section-title">
+            Add New Student
+        </h4>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <input type="hidden" name="action" value="add_student">
+
+            <div class="row g-3">
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Student Name
+                    </label>
+
+                    <input type="text"
+                           name="name"
+                           class="form-control"
+                           placeholder="Enter student name"
+                           required>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Roll Number
+                    </label>
+
+                    <input type="text"
+                           name="roll_number"
+                           class="form-control"
+                           placeholder="Enter roll number"
+                           required>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Department
+                    </label>
+
+                    <select name="department"
+                            class="form-select">
+
+                        <option value="ECE">ECE</option>
+                        <option value="CSE">CSE</option>
+                        <option value="EEE">EEE</option>
+                        <option value="ME">Mechanical</option>
+                        <option value="CE">Civil</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <button type="submit"
+                    class="btn btn-primary mt-4">
+
+                + Add Student
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- MARK ATTENDANCE SECTION -->
+
+    <div class="section-card">
+
+        <h4 class="section-title">
+            Mark Attendance
+        </h4>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <input type="hidden" name="action" value="mark_attendance">
+
+            <div class="row g-3">
+
+                <div class="col-md-3">
+
+                    <label class="form-label">
+                        Date
+                    </label>
+
+                    <input type="date"
+                           name="date"
+                           class="form-control"
+                           required>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <label class="form-label">
+                        Subject
+                    </label>
+
+                    <select name="subject"
+                            class="form-select"
+                            required>
+
+                        <option value="">
+                            Select Subject
+                        </option>
+
+                        <option value="Internet of Things">
+                            Internet of Things
+                        </option>
+
+                        <option value="Django">
+                            Django
+                        </option>
+
+                        <option value="Python">
+                            Python
+                        </option>
+
+                        <option value="Mathematics">
+                            Mathematics
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <label class="form-label">
+                        Student
+                    </label>
+
+                    <select name="student"
+                            class="form-select"
+                            required>
+
+                        <option value="">
+                            Select Student
+                        </option>
+
+                        {% for student in students %}
+
+                            <option value="{{ student.id }}">
+
+                                {{ student.roll_number }} - {{ student.name }}
+
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <label class="form-label">
+                        Attendance Status
+                    </label>
+
+                    <select name="status"
+                            class="form-select"
+                            required>
+
+                        <option value="Present">
+                            Present
+                        </option>
+
+                        <option value="Absent">
+                            Absent
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <button type="submit"
+                    class="btn btn-primary mt-4">
+
+                Mark Attendance
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- STUDENT SUMMARY -->
+
+    <div class="section-card">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <h4 class="section-title mb-0">
+                Student Attendance Summary
+            </h4>
+
+        </div>
+
+
+        <div class="table-responsive">
+
+            <table class="table align-middle">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Student</th>
+                        <th>Roll Number</th>
+                        <th>Department</th>
+                        <th>Total Classes</th>
+                        <th>Present</th>
+                        <th>Absent</th>
+                        <th>Percentage</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for item in student_summary %}
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                {{ item.student.name }}
+                            </strong>
+                        </td>
+
+                        <td>
+                            {{ item.student.roll_number }}
+                        </td>
+
+                        <td>
+                            {{ item.student.department }}
+                        </td>
+
+                        <td>
+                            {{ item.total_classes }}
+                        </td>
+
+                        <td class="text-success">
+                            {{ item.present_classes }}
+                        </td>
+
+                        <td class="text-danger">
+                            {{ item.absent_classes }}
+                        </td>
+
+                        <td class="percentage">
+
+                            {{ item.percentage }}%
+
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+
+                        <td colspan="7"
+                            class="text-center text-muted">
+
+                            No student records available.
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- ATTENDANCE RECORDS -->
+
+    <div class="section-card">
+
+        <h4 class="section-title">
+            Attendance Records
+        </h4>
+
+
+        <div class="table-responsive">
+
+            <table class="table align-middle">
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+                        <th>Student</th>
+                        <th>Roll Number</th>
+                        <th>Subject</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for record in attendance_records %}
+
+                    <tr>
+
+                        <td>
+                            {{ forloop.counter }}
+                        </td>
+
+                        <td>
+                            {{ record.student.name }}
+                        </td>
+
+                        <td>
+                            {{ record.student.roll_number }}
+                        </td>
+
+                        <td>
+                            {{ record.subject }}
+                        </td>
+
+                        <td>
+                            {{ record.date }}
+                        </td>
+
+                        <td>
+
+                            {% if record.status == "Present" %}
+
+                                <span class="badge-present">
+                                    Present
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge-absent">
+                                    Absent
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            <form method="POST">
+
+                                {% csrf_token %}
+
+                                <input type="hidden"
+                                       name="action"
+                                       value="delete_attendance">
+
+                                <input type="hidden"
+                                       name="attendance_id"
+                                       value="{{ record.id }}">
+
+                                <button type="submit"
+                                        class="btn btn-sm btn-outline-danger">
+
+                                    Delete
+
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+
+                        <td colspan="7"
+                            class="text-center text-muted">
+
+                            No attendance records available.
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<footer>
+
+    SmartAttend | Django Attendance Monitoring System
+
+</footer>
+
+
+</body>
+</html>

@@ -9,68 +9,51 @@ The project is implemented using **Python, Django, HTML, CSS and SQLite**, and i
 
 ## TABLE OF CONTENTS
 
-1. [Project Title](#iot-project-2-django)
-2. [Project Overview](#smart-attendance-monitoring-system)
-3. [Project Objectives](#project-objectives)
-4. [Home Page](#home-page)
-5. [Project Technologies](#project-technologies)
-6. [Django Project Structure](#django-project-structure)
-7. [Development Environment](#development-environment)
-8. [Project Creation](#project-creation)
-9. [Virtual Environment](#virtual-environment)
-10. [Installing Django](#installing-django)
-11. [Creating the Django Project](#creating-the-django-project)
-12. [Running the Initial Project](#running-the-initial-project)
-13. [Creating the Attendance Application](#creating-the-attendance-application)
-14. [Registering the Application](#registering-the-application)
-15. [Template Configuration](#template-configuration)
-16. [Home Page View](#home-page-view)
-17. [URL Configuration](#url-configuration)
-18. [Single Page Interface](#single-page-interface)
-19. [Attendance Database](#attendance-database)
-20. [Attendance Model](#attendance-model)
-21. [Database Migration](#database-migration)
-22. [SQLite Database](#sqlite-database)
-23. [Django Admin](#django-admin)
-24. [Admin User](#admin-user)
-25. [Attendance Dashboard](#attendance-dashboard)
-26. [Attendance Statistics](#attendance-statistics)
-27. [View with Database Data](#view-with-database-data)
-28. [Displaying Data in HTML](#displaying-data-in-html)
-29. [How to Test and Use the Interface](#how-to-test-and-use-the-interface)
-30. [Project Testing](#project-testing)
-30. [Common Error: TemplateDoesNotExist](#common-error--templatedoesnotexist)
-31. [Common Error: Import Could Not Be Resolved](#common-error--import-could-not-be-resolved)
-32. [Project Requirements](#project-requirements)
-33. [GitHub Version Control](#github-version-control)
-34. [Gitignore](#gitignore)
-35. [GitHub Repository](#github-repository)
-36. [Connecting Local Project to GitHub](#connecting-local-project-to-github)
-37. [GitHub Authentication](#github-authentication)
-38. [First Commit](#first-commit)
-39. [Pushing to GitHub](#pushing-to-github)
-40. [Fetch First Error](#fetch-first-error)
-41. [Divergent Branch Error](#divergent-branch-error)
-42. [Normal GitHub Workflow](#normal-github-workflow)
-43. [Repository Documentation](#repository-documentation)
-44. [Final Project Workflow](#final-project-workflow)
-45. [Conclusion](#conclusion)
-46. [Author](#author)
+1. [Home Page](#home-page)
+2. [Django Project Structure](#django-project-structure)
+3. [Development Environment](#development-environment)
+4. [Project Creation](#project-creation)
+5. [Virtual Environment](#virtual-environment)
+6. [Installing Django](#installing-django)
+7. [Creating The Django Project](#creating-the-django-project)
+8. [Running The Initial Project](#running-the-initial-project)
+9. [Creating The Attendance Application](#creating-the-attendance-application)
+10. [Registering The Application](#registering-the-application)
+11. [Template Configuration](#template-configuration)
+12. [Home Page View](#home-page-view)
+13. [Url Configuration](#url-configuration)
+14. [Single Page Interface](#single-page-interface)
+15. [Attendance Database](#attendance-database)
+16. [Attendance Model](#attendance-model)
+17. [Database Migration](#database-migration)
+18. [Sqlite Database](#sqlite-database)
+19. [Django Admin](#django-admin)
+20. [Admin User](#admin-user)
+21. [Attendance Dashboard](#attendance-dashboard)
+22. [Attendance Statistics](#attendance-statistics)
+23. [View With Database Data](#view-with-database-data)
+24. [Displaying Data In Html](#displaying-data-in-html)
+25. [How To Test And Use The Interface](#how-to-test-and-use-the-interface)
+26. [Project Testing](#project-testing)
+27. [Common Error — Templatedoesnotexist](#common-error-templatedoesnotexist)
+28. [Common Error — Import Could Not Be Resolved](#common-error-import-could-not-be-resolved)
+29. [Project Requirements](#project-requirements)
+30. [Github Version Control](#github-version-control)
+31. [Gitignore](#gitignore)
+32. [Github Repository](#github-repository)
+33. [Connecting Local Project To Github](#connecting-local-project-to-github)
+34. [Github Authentication](#github-authentication)
+35. [First Commit](#first-commit)
+36. [Pushing To Github](#pushing-to-github)
+37. [Fetch First Error](#fetch-first-error)
+38. [Divergent Branch Error](#divergent-branch-error)
+39. [Normal Github Workflow](#normal-github-workflow)
+40. [Final Project Workflow](#final-project-workflow)
+41. [Author](#author)
 
 ---
 
-# PROJECT OBJECTIVES
 
-- To develop a web-based attendance monitoring system using Django.
-- To understand the Django MVT architecture.
-- To create a database-backed web application.
-- To provide a simple single-page attendance dashboard.
-- To record and display student attendance.
-- To calculate and display attendance statistics.
-- To understand Django URL routing, views, templates and models.
-- To maintain the project using Git and GitHub.
-
----
 
 # HOME PAGE
 
@@ -88,41 +71,9 @@ It can contain:
 
 The complete interface is designed as a **single-page dashboard**, so the main information can be accessed without navigating through multiple pages.
 
-### Main Flow
 
-```text
-                    SMART ATTENDANCE
-                           |
-                           v
-                    Django Home Page
-                           |
-          +----------------+----------------+
-          |                |                |
-          v                v                v
-     Student Data     Attendance Data    Statistics
-          |                |                |
-          +----------------+----------------+
-                           |
-                           v
-                    Dashboard Display
-```
 
----
 
-# PROJECT TECHNOLOGIES
-
-| Component | Technology |
-|---|---|
-| Programming Language | Python |
-| Web Framework | Django |
-| Frontend | HTML5 / CSS3 |
-| Database | SQLite |
-| IDE | Visual Studio Code |
-| Operating System | Ubuntu Linux |
-| Version Control | Git |
-| Repository | GitHub |
-
----
 
 # DJANGO PROJECT STRUCTURE
 

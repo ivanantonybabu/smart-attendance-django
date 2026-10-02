@@ -3,7 +3,7 @@
 
 The **Smart Attendance Monitoring System** is a Django-based web application developed to digitally manage and monitor student attendance. The project provides a simple single-page dashboard through which attendance information can be viewed and managed.
 
-The project is implemented using **Python, Django, HTML, CSS and SQLite**, and is developed in **Ubuntu Linux using Visual Studio Code**.
+The project is implemented using **Python, Django, HTML, CSS and SQLite**.
 
 ---
 
